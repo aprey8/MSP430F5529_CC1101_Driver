@@ -8,6 +8,8 @@
 #ifndef CC1101_H_
 #define CC1101_H_
 #include <msp430.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 
 // CC1101 CONFIG REGSITER
@@ -100,17 +102,18 @@
 #define CC1101_PATABLE      0x3E
 #define CC1101_TXFIFO       0x3F
 #define CC1101_RXFIFO       0x3F
-#define	CC1101_MASK_FREND0_PA_POWER		0x01 //Accepts values 0x01 through 0x07
-
-//*************************************** pins **************************************************//
-#define SCK_PIN   13
-#define MISO_PIN  12
-#define MOSI_PIN  11
-#define SS_PIN    10
-#define GDO0	2
-#define GDO2	9
+#define	CC1101_PA_POWER		0x01 //Accepts values 0x01 through 0x07
 
 
+
+
+
+//SPI functions
+void spi_init();
+bool spi_busy();
+void spi_bus_wait();
+uint8_t spi_read_bus();
+void spi_write_bus(uint8_t data);
 
 
 #endif /* CC1101_H_ */
